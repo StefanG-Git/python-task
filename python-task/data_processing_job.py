@@ -54,7 +54,7 @@ class DataProcessingJob:
         local_data_df, request_data_df = data
         # Get the common columns from both DataFrames
         common_columns = get_common_columns(request_data_df, local_data_df)
-        # Remove the merge column
+        # Remove the merge column from the common columns list
         common_columns.remove(KURZNAME_COLUMN)
         # Merge both DataFrames
         merged_df = merge_dataframes(local_data_df, request_data_df, OUTER_MERGE, KURZNAME_COLUMN, SUFFIXES)
@@ -64,7 +64,6 @@ class DataProcessingJob:
         clean_df = replace_none_values(filtered_df, common_columns)
         # Drop the duplicate columns
         clean_df = drop_duplicate_columns(clean_df, common_columns)
-
 
 
     def _load(self, final_data):
