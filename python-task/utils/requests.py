@@ -8,6 +8,6 @@ def get_access_token(url, json, headers):
 
 
 def get_request_resource(url, headers, json=None):
-    response = requests.request("GET", url=url, headers=headers)
+    response = requests.request("GET", url=url, json=json, headers=headers)
 
     return response.json()
