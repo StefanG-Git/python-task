@@ -65,7 +65,7 @@ class DataProcessingJob:
         # Drop the duplicate columns
         clean_df = drop_duplicate_columns(clean_df, common_columns)
 
-        clean_df.to_excel('C:/Users/Stefan/Desktop/clean_file.xlsx')
+
 
     def _load(self, final_data):
         pass
