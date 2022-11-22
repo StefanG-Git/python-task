@@ -34,3 +34,9 @@ def drop_duplicate_columns(df: pd.DataFrame, common_columns: List[str]) -> pd.Da
     df = df.drop([c + "_drop" for c in common_columns], axis=1)
 
     return df
+
+
+def sort_dataframe(df: pd.DataFrame, sort_columns: str | List[str], ascending: bool | List[bool]) -> pd.DataFrame:
+    df = df.sort_values(by=sort_columns, ascending=ascending)
+
+    return df
