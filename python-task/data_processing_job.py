@@ -71,6 +71,7 @@ class DataProcessingJob:
         # Sort DataFrame by "gruppe" column
         sorted_df = sort_dataframe(clean_df, GRUPPE_COLUMN, True)
 
+
         # # for rnr in clean_df["rnr"]:
         # #     URL_2 = f'https://api.baubuddy.de/dev/index.php/v1/labels/{rnr}'
         # #     labelid_data_as_json = get_request_resource(URL_2, self._RESOURCE_REQUEST_HEADERS)
