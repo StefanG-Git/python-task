@@ -72,12 +72,7 @@ class DataProcessingJob:
         sorted_df = sort_dataframe(clean_df, GRUPPE_COLUMN, True)
 
 
-        # # for rnr in clean_df["rnr"]:
-        # #     URL_2 = f'https://api.baubuddy.de/dev/index.php/v1/labels/{rnr}'
-        # #     labelid_data_as_json = get_request_resource(URL_2, self._RESOURCE_REQUEST_HEADERS)
-        # #     print(labelid_data_as_json)
-        #
-        # sorted_df.to_excel('C:/Users/Stefan/Desktop/sorted_file.xlsx')
+
 
     def _load(self, final_data):
         pass
