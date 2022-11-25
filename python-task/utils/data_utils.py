@@ -23,20 +23,26 @@ def get_common_columns(first_df: pd.DataFrame, second_df: pd.DataFrame) -> list:
     return common_columns
 
 
-def replace_none_values(df: pd.DataFrame, common_columns: List[str]) -> pd.DataFrame:
+def replace_null_values(df: pd.DataFrame, common_columns: List[str]) -> pd.DataFrame:
     for column in common_columns:
         df[column] = df[column].where(df[column].notnull(), df[column + "_drop"])
 
     return df
 
 
-def drop_duplicate_columns(df: pd.DataFrame, common_columns: List[str]) -> pd.DataFrame:
-    df = df.drop([c + "_drop" for c in common_columns], axis=1)
+def drop_suffix_columns(df: pd.DataFrame, columns: List[str], suffix: str) -> pd.DataFrame:
+    new_df = df.drop([f"{c}{suffix}" for c in columns], axis=1)
 
-    return df
+    return new_df
+
+
+def drop_mismatch_columns(df: pd.DataFrame, columns: List[str]):
+    new_df = df.drop(df.columns.difference(columns, sort=False), axis=1)
+
+    return new_df
 
 
 def sort_dataframe(df: pd.DataFrame, sort_columns: str | List[str], ascending: bool | List[bool]) -> pd.DataFrame:
-    df = df.sort_values(by=sort_columns, ascending=ascending)
+    new_df = df.sort_values(by=sort_columns, ascending=ascending)
 
-    return df
+    return new_df
