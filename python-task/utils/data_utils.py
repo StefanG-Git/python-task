@@ -1,11 +1,12 @@
-from typing import List
+from typing import List, Dict, Any
 
 import pandas as pd
+
+from utils.request_utils import get_request_resource
 
 
 def merge_dataframes(left_df: pd.DataFrame, right_df: pd.DataFrame,
                      merge_type: str, merge_column: str, suffixes: tuple) -> pd.DataFrame:
-
     new_df = left_df.merge(right_df, how=merge_type, on=merge_column, suffixes=suffixes)
 
     return new_df
@@ -46,3 +47,9 @@ def sort_dataframe(df: pd.DataFrame, sort_columns: str | List[str], ascending: b
     new_df = df.sort_values(by=sort_columns, ascending=ascending)
 
     return new_df
+
+
+def add_new_column(df: pd.DataFrame, column_name: str, value: Any = None):
+    df[column_name] = value
+
+    return df
