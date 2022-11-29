@@ -1,4 +1,5 @@
 from datetime import datetime
+from logger import custom_logger
 from typing import List
 
 import pandas as pd
@@ -10,6 +11,7 @@ from utils.request_utils import get_access_token
 OUTER_MERGE = "outer"
 SUFFIX = "_drop"
 TODAY = datetime.now()
+
 
 
 class DataProcessingJob:
@@ -49,11 +51,15 @@ class DataProcessingJob:
         self.to_color_rows = to_color_rows
 
     def run(self):
+        custom_logger.info("Running job...")
+
         data = self._extract()
         result_wb = self._transform(data)
         self._load(result_wb)
 
     def _extract(self):
+        custom_logger.info("Extracting data...")
+
         # Read local data into DataFrame
         local_data_df = pd.read_csv(self._LOCAL_DATA_PATH, sep=";")
         # Download resource data
@@ -61,11 +67,14 @@ class DataProcessingJob:
         # Create DataFrame from the resource data
         request_data_df = pd.DataFrame(resource_data)
 
+        custom_logger.info("Data extracted successfully!")
+
         return local_data_df, request_data_df
 
     def _transform(self, data):
-        local_data_df, request_data_df = data
+        custom_logger.info("Transforming data...")
 
+        local_data_df, request_data_df = data
         # Get the common columns from both DataFrames
         common_columns = get_common_columns(request_data_df, local_data_df)
         # Remove the merge column from the common columns list
@@ -103,9 +112,15 @@ class DataProcessingJob:
         if self.to_color_rows:
             add_background_color_to_worksheet_cells(ws, self._HU_COLUMN, TODAY)
 
+        custom_logger.info("Data transformations ended!")
+
         return wb
 
     def _load(self, result_wb):
+        custom_logger.info("Saving data...")
+
         # Save the data after the transformations as xlsx file
         result_wb.save(self._OUTPUT_DATA_PATH)
         result_wb.close()
+
+        custom_logger.info("Data saved successfully!")

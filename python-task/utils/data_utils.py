@@ -5,6 +5,7 @@ import pandas as pd
 from openpyxl.styles import PatternFill
 from openpyxl.utils.dataframe import dataframe_to_rows
 
+from logger import custom_logger
 from utils.common_utils import get_color_code_by_number
 from utils.datetime_utils import *
 from utils.request_utils import get_request_resource_as_json
@@ -40,6 +41,8 @@ def merge_dataframes(
     """
     new_df = left_df.merge(right_df, how=merge_type, on=merge_columns, suffixes=suffixes)
 
+    custom_logger.info("DataFrames merged successfully!")
+
     return new_df
 
 
@@ -60,6 +63,8 @@ def filter_rows_with_none_values(df: pd.DataFrame, column: str) -> pd.DataFrame:
         The filtered DataFrame.
     """
     new_df = df[df[column].notnull()]
+
+    custom_logger.info("DataFrame filtered Null values successfully!")
 
     return new_df
 
@@ -105,6 +110,8 @@ def replace_null_values(df: pd.DataFrame, common_columns: List[str]) -> pd.DataF
     for column in common_columns:
         df[column] = df[column].where(df[column].notnull(), df[column + "_drop"])
 
+    custom_logger.info("Replaced Null values successfully!")
+
     return df
 
 
@@ -128,6 +135,8 @@ def drop_suffix_columns(df: pd.DataFrame, columns: List[str], suffix: str) -> pd
     """
     new_df = df.drop([f"{c}{suffix}" for c in columns], axis=1)
 
+    custom_logger.info("Dropped redundant columns successfully!")
+
     return new_df
 
 
@@ -149,6 +158,8 @@ def drop_mismatch_columns(df: pd.DataFrame, columns: List[str]):
         DataFrame without the columns that are not in the list.
     """
     new_df = df.drop(df.columns.difference(columns, sort=False), axis=1)
+
+    custom_logger.info("Dropped mismatch columns successfully!")
 
     return new_df
 
@@ -173,6 +184,8 @@ def sort_dataframe(df: pd.DataFrame, sort_columns: str | List[str], ascending: b
     """
     new_df = df.sort_values(by=sort_columns, ascending=ascending)
 
+    custom_logger.info(f"DataFrame sorted in {'ascending' if ascending else 'descending'} order successfully!")
+
     return new_df
 
 
@@ -195,6 +208,8 @@ def add_new_column_to_dataframe(df: pd.DataFrame, column_name: str, value: Any =
         Dataframe with the new column.
     """
     df[column_name] = value
+
+    custom_logger.info(f"Added {column_name} column successfully!")
 
     return df
 
@@ -222,6 +237,8 @@ def write_data_from_pandas_dataframe_to_worksheet(
 
     for cell in ws[1]:
         cell.style = 'Pandas'
+
+    custom_logger.info("Data written to Worksheet successfully!")
 
 
 def get_color_codes(
@@ -295,6 +312,8 @@ def add_font_color_to_worksheet_cells(
             for column_index in range(1, columns_range + 1):
                 ws.cell(row_index, column_index).font = openpyxl.styles.Font(color=first_code)
 
+        custom_logger.info("Added font color successfully!")
+
 
 def get_column_index_in_worksheet(
         ws: openpyxl.worksheet.worksheet.Worksheet,
@@ -363,3 +382,5 @@ def add_background_color_to_worksheet_cells(
             for column_index in range(1, columns_range + 1):
                 cell_header = ws.cell(row_index, column_index)
                 cell_header.fill = PatternFill(start_color=color_code, fill_type="solid")
+
+    custom_logger.info("Added background color successfully!")
