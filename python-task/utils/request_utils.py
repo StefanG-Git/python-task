@@ -3,13 +3,47 @@ from typing import List, Dict
 import requests
 
 
-def get_access_token(url: str, json: dict, headers: Dict[str, str]) -> dict:
+def get_access_token(url: str, json: dict, headers: Dict[str, str]) -> str:
+    """
+    Extract access token for authorization in API via request.
+
+    Parameters
+    ----------
+    url : str
+        URL of the access token.
+    json : str
+        JSON object to send in the body.
+    headers: Any
+        Headers to send with the request.
+
+    Returns
+    -------
+    token : str
+        Access token for API.
+    """
     response = requests.request("POST", url=url, json=json, headers=headers)
+    token = response.json()["oauth"]["access_token"]
+    return token
 
-    return response.json()["oauth"]["access_token"]
 
+def get_request_resource_as_json(url: str, headers: Dict[str, str], json: Dict[str, str] = None) -> List[dict]:
+    """
+    Extract data from API via request.
 
-def get_request_resource(url: str, headers: Dict[str, str], json: Dict[str, str] = None) -> List[dict]:
+    Parameters
+    ----------
+    url : str
+        URL of the data.
+    json : str
+        JSON object to send in the body.
+    headers: Any
+        Headers to send with the request.
+
+    Returns
+    -------
+    data : List[dict]
+        Required data.
+    """
     response = requests.request("GET", url=url, json=json, headers=headers)
-
-    return response.json()
+    data = response.json()
+    return data
