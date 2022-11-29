@@ -1,0 +1,15 @@
+2022-11-29 21:02:19,387: INFO - Running job...
+2022-11-29 21:02:19,388: INFO - Extracting data...
+2022-11-29 21:02:20,556: INFO - Data extracted successfully!
+2022-11-29 21:02:20,557: INFO - Transforming data...
+2022-11-29 21:02:20,560: INFO - DataFrames merged successfully!
+2022-11-29 21:02:20,561: INFO - DataFrame filtered Null values successfully!
+2022-11-29 21:02:20,566: INFO - Replaced Null values successfully!
+2022-11-29 21:02:20,567: INFO - Dropped redundant columns successfully!
+2022-11-29 21:02:20,567: INFO - DataFrame sorted in ascending order successfully!
+2022-11-29 21:02:20,568: INFO - Dropped mismatch columns successfully!
+2022-11-29 21:02:20,572: INFO - Data written to Worksheet successfully!
+2022-11-29 21:02:20,577: INFO - Added background color successfully!
+2022-11-29 21:02:20,577: INFO - Data transformations ended!
+2022-11-29 21:02:20,577: INFO - Saving data...
+2022-11-29 21:02:20,589: INFO - Data saved successfully!
