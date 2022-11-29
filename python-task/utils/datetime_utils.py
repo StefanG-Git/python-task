@@ -5,7 +5,7 @@ from dateutil.relativedelta import relativedelta
 
 def string_to_date(date_str: str) -> datetime.date:
     """
-    Convert string to date object.
+    Converts string to date object.
 
     Parameters
     ----------
@@ -23,7 +23,7 @@ def string_to_date(date_str: str) -> datetime.date:
 
 def get_months_diff_between_dates(start_date: datetime.date, end_date: datetime.date):
     """
-    Calculate months between two dates.
+    Calculates months between two dates.
 
     Parameters
     ----------
