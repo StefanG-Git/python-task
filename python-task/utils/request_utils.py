@@ -5,7 +5,7 @@ import requests
 
 def get_access_token(url: str, json: dict, headers: Dict[str, str]) -> str:
     """
-    Extract access token for authorization in API via request.
+    Extracts access token for authorization in API via request.
 
     Parameters
     ----------
@@ -28,7 +28,7 @@ def get_access_token(url: str, json: dict, headers: Dict[str, str]) -> str:
 
 def get_request_resource_as_json(url: str, headers: Dict[str, str], json: Dict[str, str] = None) -> List[dict]:
     """
-    Extract data from API via request.
+    Extracts data from API via request.
 
     Parameters
     ----------
