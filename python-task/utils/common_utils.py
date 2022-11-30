@@ -12,9 +12,9 @@ def get_color_code_by_number(number: int) -> str:
     Color code: str
         The code of color
     """
-    if number < 3:
+    if number <= 3:
         return "007500"
-    elif number < 12:
+    elif number <= 12:
         return "FFA500"
 
     return "b30000"
