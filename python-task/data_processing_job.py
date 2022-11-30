@@ -1,5 +1,5 @@
 from datetime import datetime
-from logger import custom_logger
+from logger import logger
 from typing import List
 
 import pandas as pd
@@ -51,14 +51,14 @@ class DataProcessingJob:
         self.to_color_rows = to_color_rows
 
     def run(self):
-        custom_logger.info("Running job...")
+        logger.info("Running job...")
 
         data = self._extract()
         result_wb = self._transform(data)
         self._load(result_wb)
 
     def _extract(self):
-        custom_logger.info("Extracting data...")
+        logger.info("Extracting data...")
 
         # Read local data into DataFrame
         local_data_df = pd.read_csv(self._LOCAL_DATA_PATH, sep=";")
@@ -67,12 +67,12 @@ class DataProcessingJob:
         # Create DataFrame from the resource data
         request_data_df = pd.DataFrame(resource_data)
 
-        custom_logger.info("Data extracted successfully!")
+        logger.info("Data extracted successfully!")
 
         return local_data_df, request_data_df
 
     def _transform(self, data):
-        custom_logger.info("Transforming data...")
+        logger.info("Transforming data...")
 
         local_data_df, request_data_df = data
         # Get the common columns from both DataFrames
@@ -112,15 +112,15 @@ class DataProcessingJob:
         if self.to_color_rows:
             add_background_color_to_worksheet_cells(ws, self._HU_COLUMN, TODAY)
 
-        custom_logger.info("Data transformations ended!")
+        logger.info("Data transformations ended!")
 
         return wb
 
     def _load(self, result_wb):
-        custom_logger.info("Saving data...")
+        logger.info("Saving data...")
 
         # Save the data after the transformations as xlsx file
         result_wb.save(self._OUTPUT_DATA_PATH)
         result_wb.close()
 
-        custom_logger.info("Data saved successfully!")
+        logger.info("Data saved successfully!")
