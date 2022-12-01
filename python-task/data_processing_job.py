@@ -45,9 +45,9 @@ class DataProcessingJob:
 
     _COLOR_REQUEST_URL = "https://api.baubuddy.de/dev/index.php/v1/labels/"
 
-    def __init__(self, columns: List[str], to_color_rows: bool):
+    def __init__(self, columns: List[str], add_background_color: bool):
         self.columns = columns
-        self.to_color_rows = to_color_rows
+        self.to_color_rows = add_background_color
 
     @property
     def columns(self):
@@ -119,7 +119,7 @@ class DataProcessingJob:
                 self._RESOURCE_REQUEST_HEADERS
             )
 
-        # Color rows by date in workbook if to_color_rows is True
+        # Color rows by date in workbook if add_background_color is True
         if self.to_color_rows:
             add_background_color_to_worksheet_cells(ws, self._HU_COLUMN, TODAY)
 
