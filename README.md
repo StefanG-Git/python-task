@@ -1,7 +1,7 @@
 ## What Is This?
 
 
-Implementation of the task from VERO Digital Solutions - https://github.com/VERO-Digital-Solutions/python-task.
+Implementation of the task from VERO Digital Solutions - https://github.com/VERO-Digital-Solutions/python-task/blob/master/README.md.
 
 ## Goal
 
