@@ -46,7 +46,7 @@ def merge_dataframes(
     return new_df
 
 
-def filter_rows_with_none_values(df: pd.DataFrame, column: str) -> pd.DataFrame:
+def filter_rows_with_null_values_from_df(df: pd.DataFrame, column: str) -> pd.DataFrame:
     """
     Removes rows from DataFrame where value from given column is Null.
 
