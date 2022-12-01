@@ -8,7 +8,7 @@ Implementation of the task from VERO Digital Solutions - https://github.com/VERO
 
 Download a certain set of resources, merges them with CSV-transmitted resources, and converts them to a formatted excel file.
 
-## How To Use This
+## How does it work?
 
 
 - The requirements.txt file should list all Python libraries that program depend on, and they will be installed using:
