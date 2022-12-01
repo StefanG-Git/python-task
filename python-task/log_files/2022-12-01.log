@@ -1,0 +1,16 @@
+2022-12-01 20:19:17,448: INFO - Logger initialized successfully!
+2022-12-01 20:19:19,089: INFO - Running job...
+2022-12-01 20:19:19,089: INFO - Extracting data...
+2022-12-01 20:19:20,245: INFO - Data extracted successfully!
+2022-12-01 20:19:20,260: INFO - Transforming data...
+2022-12-01 20:19:20,260: INFO - DataFrames merged successfully!
+2022-12-01 20:19:20,260: INFO - Filtered Null values from hu column from DataFrame.
+2022-12-01 20:19:20,260: INFO - Replaced Null values in DataFrame.
+2022-12-01 20:19:20,260: INFO - Dropped redundant columns from DataFrame.
+2022-12-01 20:19:20,260: INFO - DataFrame sorted in ascending order by gruppe column.
+2022-12-01 20:19:20,260: INFO - Dropped mismatch columns from DataFrame.
+2022-12-01 20:19:20,276: INFO - Data written from DataFrame to Worksheet successfully!
+2022-12-01 20:19:20,276: INFO - Added background color to Worksheet.
+2022-12-01 20:19:20,276: INFO - Data transformations ended!
+2022-12-01 20:19:20,276: INFO - Saving data...
+2022-12-01 20:19:20,292: INFO - Data saved successfully!
