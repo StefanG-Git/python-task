@@ -13,7 +13,6 @@ SUFFIX = "_drop"
 TODAY = datetime.now()
 
 
-
 class DataProcessingJob:
     _HU_COLUMN = "hu"
     _RNR_COLUMN = "rnr"
@@ -82,7 +81,7 @@ class DataProcessingJob:
         # Merge both DataFrames
         merged_df = merge_dataframes(local_data_df, request_data_df, OUTER_MERGE, self._KURZNAME_COLUMN, ("", SUFFIX))
         # Filter rows where "hu" column is Null
-        filtered_df = filter_rows_with_none_values(merged_df, self._HU_COLUMN)
+        filtered_df = filter_rows_with_null_values_from_df(merged_df, self._HU_COLUMN)
         # Replace Null values from the duplicate column
         clean_df = replace_null_values(filtered_df, common_columns)
         # Drop the duplicate columns
