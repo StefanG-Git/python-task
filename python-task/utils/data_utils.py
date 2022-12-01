@@ -117,9 +117,9 @@ def replace_null_values_in_df(df: pd.DataFrame, common_columns: List[str], suffi
     return df
 
 
-def drop_suffix_columns(df: pd.DataFrame, columns: List[str], suffix: str) -> pd.DataFrame:
+def drop_suffix_columns_from_df(df: pd.DataFrame, columns: List[str], suffix: str) -> pd.DataFrame:
     """
-    Drops redundant columns from DataFrame generated after merge.
+    Drops redundant columns from DataFrame generated after merge if any.
 
     Parameters
     ----------
@@ -135,7 +135,8 @@ def drop_suffix_columns(df: pd.DataFrame, columns: List[str], suffix: str) -> pd
     df : pd.DataFrame
         DataFrame without redundant columns.
     """
-    new_df = df.drop([f"{c}{suffix}" for c in columns], axis=1)
+    df_columns_list = df.columns.tolist()
+    new_df = df.drop([f"{c}{suffix}" for c in columns if f"{c}{suffix}" in df_columns_list], axis=1)
 
     logger.info("Dropped redundant columns from DataFrame.")
 
@@ -175,7 +176,7 @@ def sort_dataframe(df: pd.DataFrame, sort_columns: str | List[str], ascending: b
     df : pd.DataFrame
         DataFrame to sort.
     sort_columns : List[str]
-        List with column names to use for sorting.
+        Column or list with column names to use for sorting.
     ascending: bool
         How to sort the DataFrame.
 
@@ -189,31 +190,6 @@ def sort_dataframe(df: pd.DataFrame, sort_columns: str | List[str], ascending: b
     logger.info(f"DataFrame sorted in {'ascending' if ascending else 'descending'} order by {sort_columns} column.")
 
     return new_df
-
-
-def add_new_column_to_dataframe(df: pd.DataFrame, column_name: str, value: Any = None):
-    """
-    Adds new column in DataFrame with given value.
-
-    Parameters
-    ----------
-    df: pd.DataFrame
-        DataFrame to use for adding the new column.
-    column_name: str
-        Name of the new column.
-    value: Any
-        Value to insert in the new column, None by default.
-
-    Returns
-    -------
-    df: pd.DataFrame
-        Dataframe with the new column.
-    """
-    df[column_name] = value
-
-    logger.info(f"Added {column_name} column in DataFrame.")
-
-    return df
 
 
 def write_data_from_pandas_dataframe_to_worksheet(
