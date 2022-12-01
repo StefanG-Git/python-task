@@ -69,7 +69,7 @@ def filter_rows_with_null_values_from_df(df: pd.DataFrame, column: str) -> pd.Da
     return new_df
 
 
-def get_common_columns(first_df: pd.DataFrame, second_df: pd.DataFrame) -> list:
+def get_common_columns_from_dfs(first_df: pd.DataFrame, second_df: pd.DataFrame) -> list:
     """
     Finds the common column names from two DataFrames.
 
@@ -90,9 +90,9 @@ def get_common_columns(first_df: pd.DataFrame, second_df: pd.DataFrame) -> list:
     return common_columns
 
 
-def replace_null_values(df: pd.DataFrame, common_columns: List[str]) -> pd.DataFrame:
+def replace_null_values_in_df(df: pd.DataFrame, common_columns: List[str], suffix: str) -> pd.DataFrame:
     """
-    Compares the generated columns from DataFrame after merge
+    Compares the generated columns in DataFrame after merge
     and check if one is Null, then takes the value from the other.
 
     Parameters
@@ -101,6 +101,8 @@ def replace_null_values(df: pd.DataFrame, common_columns: List[str]) -> pd.DataF
         DataFrame to use for replacing the values.
     common_columns : List[str]
         List with column names to compare.
+    suffix : str
+        Suffix extension of the duplicate columns
 
     Returns
     -------
@@ -108,7 +110,7 @@ def replace_null_values(df: pd.DataFrame, common_columns: List[str]) -> pd.DataF
         DataFrame with replaced values.
     """
     for column in common_columns:
-        df[column] = df[column].where(df[column].notnull(), df[column + "_drop"])
+        df[column] = df[column].where(df[column].notnull(), df[column + suffix])
 
     logger.info("Replaced Null values in DataFrame.")
 
