@@ -97,7 +97,7 @@ class DataProcessingJob:
         # Replace Null values from the duplicate column
         clean_df = replace_null_values_in_df(filtered_df, common_columns, SUFFIX)
         # Drop the duplicate columns
-        clean_df = drop_suffix_columns(clean_df, common_columns, SUFFIX)
+        clean_df = drop_suffix_columns_from_df(clean_df, common_columns, SUFFIX)
         # Sort DataFrame by "gruppe" column
         sorted_df = sort_dataframe(clean_df, self._GRUPPE_COLUMN, True)
         sorted_df = sorted_df.reset_index(drop=True)
