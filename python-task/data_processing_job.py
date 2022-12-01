@@ -46,8 +46,20 @@ class DataProcessingJob:
     _COLOR_REQUEST_URL = "https://api.baubuddy.de/dev/index.php/v1/labels/"
 
     def __init__(self, columns: List[str], to_color_rows: bool):
-        self.columns = [self._RNR_COLUMN, self._GRUPPE_COLUMN] + columns
+        self.columns = columns
         self.to_color_rows = to_color_rows
+
+    @property
+    def columns(self):
+        return self._columns
+
+    @columns.setter
+    def columns(self, value):
+        for column in [self._RNR_COLUMN, self._GRUPPE_COLUMN]:
+            if column not in value:
+                value.append(column)
+
+        self._columns = value
 
     def run(self):
         logger.info("Running job...")
@@ -75,7 +87,7 @@ class DataProcessingJob:
 
         local_data_df, request_data_df = data
         # Get the common columns from both DataFrames
-        common_columns = get_common_columns(request_data_df, local_data_df)
+        common_columns = get_common_columns_from_dfs(request_data_df, local_data_df)
         # Remove the merge column from the common columns list
         common_columns.remove(self._KURZNAME_COLUMN)
         # Merge both DataFrames
@@ -83,7 +95,7 @@ class DataProcessingJob:
         # Filter rows where "hu" column is Null
         filtered_df = filter_rows_with_null_values_from_df(merged_df, self._HU_COLUMN)
         # Replace Null values from the duplicate column
-        clean_df = replace_null_values(filtered_df, common_columns)
+        clean_df = replace_null_values_in_df(filtered_df, common_columns, SUFFIX)
         # Drop the duplicate columns
         clean_df = drop_suffix_columns(clean_df, common_columns, SUFFIX)
         # Sort DataFrame by "gruppe" column
