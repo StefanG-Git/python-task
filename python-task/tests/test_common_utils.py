@@ -9,36 +9,51 @@ class CommonUtilsTests(TestCase):
     _RED_COLOR_CODE = "b30000"
 
     def test_get_color_code_by_number__when_number_is_less_than_3__expect_green_color_code(self):
+        # Arrange
         expected_result = self._GREEN_COLOR_CODE
 
+        # Act
         actual_result = get_color_code_by_number(2)
 
+        # Assert
         self.assertEqual(expected_result, actual_result)
 
     def test_get_color_code_by_number__when_number_equals_3__expect_green_color_code(self):
+        # Arrange
         expected_result = self._GREEN_COLOR_CODE
 
+        # Act
         actual_result = get_color_code_by_number(3)
 
+        # Assert
         self.assertEqual(expected_result, actual_result)
 
     def test_get_color_code_by_number__when_number_is_greater_than_3_and_less_than_12__expect_orange_color_code(self):
+        # Arrange
         expected_result = self._ORANGE_COLOR_CODE
 
+        # Act
         actual_result = get_color_code_by_number(6)
 
+        # Assert
         self.assertEqual(expected_result, actual_result)
 
     def test_get_color_code_by_number__when_number_equals_12__expect_orange_color_code(self):
+        # Arrange
         expected_result = self._ORANGE_COLOR_CODE
 
+        # Act
         actual_result = get_color_code_by_number(12)
 
+        # Assert
         self.assertEqual(expected_result, actual_result)
 
     def test_get_color_code_by_number__when_number_is_greater_than_12__expect_red_color_code(self):
+        # Arrange
         expected_result = self._RED_COLOR_CODE
 
+        # Act
         actual_result = get_color_code_by_number(13)
 
+        # Assert
         self.assertEqual(expected_result, actual_result)
