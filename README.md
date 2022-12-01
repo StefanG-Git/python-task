@@ -19,7 +19,7 @@ Download a certain set of resources, merges them with CSV-transmitted resources,
   - `-c/--colored` boolean flag, to color each row in the output file depending on the date (`True` by default)
 
 
-## A Simple Example
+## A Simple Examples
 
 
 `py main.py -k kurzname hu lagerort -c True`
