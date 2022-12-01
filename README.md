@@ -23,4 +23,8 @@ Download a certain set of resources, merges them with CSV-transmitted resources,
 
 `py main.py -k kurzname hu lagerort -c True`
 
-![image info](output.png)
+![image info](images/output.png)
+
+`main.py --keys gb1 vondat --colored False`
+
+![image info](images/output2.png)
