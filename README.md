@@ -26,6 +26,6 @@ Download a certain set of resources, merges them with CSV-transmitted resources,
 
 ![image info](images/output.png)
 
-`main.py --keys gb1 vondat --colored False`
+`py main.py --keys gb1 vondat --colored False`
 
 ![image info](images/output2.png)
