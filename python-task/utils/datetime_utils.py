@@ -5,7 +5,7 @@ from dateutil.relativedelta import relativedelta
 
 def string_to_date(date_str: str) -> datetime.date:
     """
-    Converts string to date object.
+    Converts string in YY/MM/DD or YY-MM-DD format to date object.
 
     Parameters
     ----------
@@ -17,7 +17,12 @@ def string_to_date(date_str: str) -> datetime.date:
     date_obj : datetime.date
         Date object.
     """
-    date_obj = datetime.strptime(date_str, '%Y-%m-%d').date()
+    if "-" in date_str:
+        date_format = "%Y-%m-%d"
+    else:
+        date_format = "%Y/%m/%d"
+
+    date_obj = datetime.strptime(date_str, date_format).date()
     return date_obj
 
 
