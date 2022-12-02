@@ -26,11 +26,11 @@ class DataProcessingJob:
     _OUTPUT_DATA_PATH = f"output_data/vehicles_{TODAY.isoformat()}.xlsx".replace(":", ".")
 
     _TOKEN_REQUEST_ULR = "https://api.baubuddy.de/index.php/login"
-    _TOKEN_REQUEST_PAYLOAD = payload = {
+    _TOKEN_REQUEST_PAYLOAD = {
         "username": "365",
         "password": "1"
     }
-    _TOKEN_REQUEST_HEADERS = headers = {
+    _TOKEN_REQUEST_HEADERS = {
         "Authorization": "Basic QVBJX0V4cGxvcmVyOjEyMzQ1NmlzQUxhbWVQYXNz",
         "Content-Type": "application/json"
     }
