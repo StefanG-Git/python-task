@@ -219,11 +219,11 @@ def write_data_from_pandas_dataframe_to_worksheet(
     logger.info("Data written from DataFrame to Worksheet successfully!")
 
 
-def get_color_codes(
+def get_color_code(
         label_ids: pd.Series,
         url: str,
         headers=Dict[str, str]
-) -> List[str]:
+) -> str | None:
     """
     Extracts color codes from API via request using values from array.
 
@@ -238,10 +238,9 @@ def get_color_codes(
 
     Returns
     -------
-    color_codes: List[str]
-        List with all the extracted color codes
+    color_codes: str | None
+        First resolved color code if any
     """
-    color_codes = []
 
     for label_id in label_ids:
         if label_id is not None:
@@ -249,11 +248,11 @@ def get_color_codes(
             resource = get_request_resource_as_json(current_url, headers)
             try:
                 current_code = resource[0]["colorCode"]
-                color_codes.append(current_code)
+                return current_code
             except (IndexError, KeyError):
-                pass
+                logger.info(f"Couldn't extract color code with id - {label_id}.")
 
-    return color_codes
+    return None
 
 
 def add_font_color_to_worksheet_cells(
@@ -281,9 +280,9 @@ def add_font_color_to_worksheet_cells(
     -------
     None
     """
-    color_codes = get_color_codes(label_ids, url, headers)
-    if not color_codes == []:
-        first_code = color_codes[0].lstrip("#")
+    color_code = get_color_code(label_ids, url, headers)
+    if color_code is not None:
+        first_code = color_code.lstrip("#")
         rows_range = ws.max_row
         columns_range = ws.max_column
         for row_index in range(1, rows_range + 1):
@@ -291,6 +290,8 @@ def add_font_color_to_worksheet_cells(
                 ws.cell(row_index, column_index).font = openpyxl.styles.Font(color=first_code)
 
         logger.info("Added font color to Worksheet.")
+
+    logger.info("Couldn't extract any color code.")
 
 
 def get_column_index_in_worksheet(
