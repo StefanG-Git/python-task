@@ -19,7 +19,6 @@ class DataProcessingJob:
     _GRUPPE_COLUMN = "gruppe"
     _KURZNAME_COLUMN = "kurzname"
     _LABEL_IDS_COLUMN = "labelIds"
-    _COLOR_CODE_COLUMN = "colorCode"
 
     _LOCAL_DATA_PATH = "resources/vehicles.csv"
 
